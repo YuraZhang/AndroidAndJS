@@ -71,10 +71,10 @@ javacalljs()方法在HTML中显示如下：
 
 `web.html`
 
-`function javacalljs(){
+> function javacalljs(){
     document.getElementById("content").innerHTML =
          "<br\>JAVA调用了JS的无参函数";
-	}`
+	}
 
 
 
@@ -88,10 +88,10 @@ javacalljswith()方法在HTML中显示如下：
 
 `web.html`
 
-`function javacalljswith(arg){
+> function javacalljswith(arg){
     document.getElementById("content").innerHTML =
          ("<br\>"+arg);
-	}`
+	}
 	
 
 
@@ -100,7 +100,7 @@ javacalljswith()方法在HTML中显示如下：
 #### 第三种：HTML中js调用Android（Java）代码
 `MainActivity.Java`
 
-`@JavascriptInterface
+> @JavascriptInterface
 	public void startFunction(){
     	runOnUiThread(new Runnable() {
         	@Override
@@ -108,12 +108,12 @@ javacalljswith()方法在HTML中显示如下：
 Toast.makeText(MainActivity.this,"show",Toast.LENGTH_SHORT).show();
 	       }
     });
-}`
+}
 
 `web.html`
 
-`<body>
-HTML 内容显示 <br/>
+
+> <body> HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>
 <input type="button"  value="点击调用java代码" onclick=
@@ -122,7 +122,6 @@ HTML 内容显示 <br/>
 <input type="button"  value="点击调用java代码并传递参数" onclick=
 "android.startFunction('http://www.baidu.com/')"  />
 </body>
-`
 
 
 
@@ -130,7 +129,7 @@ HTML 内容显示 <br/>
 #### 第四种：HTML中js调用Android（Java）代码（带参数）
 `MainActivity.Java`
 
-`@JavascriptInterface
+> @JavascriptInterface
 	public void startFunction(final String text){
     	runOnUiThread(new Runnable() {
        	 @Override
@@ -138,11 +137,11 @@ HTML 内容显示 <br/>
 new AlertDialog.Builder(MainActivity.this).setMessage(text).show();
         }
     });
-}`
+}
 
 `web.html`
 
-`<body>
+> <body>
 HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>
@@ -152,4 +151,4 @@ HTML 内容显示 <br/>
 <input type="button"  value="点击调用java代码并传递参数" onclick=
 "android.startFunction('http://www.baidu.com/')"  />
 </body>
-`
+

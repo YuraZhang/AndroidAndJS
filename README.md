@@ -1,8 +1,5 @@
-# AndroidAndJS
-Android(Java)与Javascript的交互
- 
 
-# 关于通过WebView实现Android（Java）与JavaScript（HTML）交互
+## 关于通过WebView实现Android（Java）与JavaScript（HTML）交互
 
 ## WebView简介
 1. WebView是一个基于webkit引擎、展现web页面的控件，作用是显示和渲染Web页面，直接使用html文件（网络上或本地assets中）作布局，可和JavaScript交互调用。
@@ -67,15 +64,17 @@ Android(Java)与Javascript的交互
 
 
 ### 第一种：Android（Java）调用HTML中js代码
-MainActivity.Java
 
-`mWebView.loadUrl("javascript:javacalljs()");`
+`MainActivity.Java
+
+mWebView.loadUrl("javascript:javacalljs()");`
+
 
 javacalljs()方法在HTML中显示如下：
 
-web.html
+`web.html
 
-`function javacalljs(){
+function javacalljs(){
     document.getElementById("content").innerHTML =
          "<br\>JAVA调用了JS的无参函数";
 	}`
@@ -84,15 +83,17 @@ web.html
 
 
 ### 第二种：Android（Java）调用HTML中js代码（带参数）
-MainActivity.Java
 
-`mWebView.loadUrl("javascript:javacalljswith("+"'http://www.baidu.com/'" + ")");`
+`MainActivity.Java
+
+mWebView.loadUrl("javascript:javacalljswith("+"'http://www.baidu.com/'" + ")");`
+
 
 javacalljswith()方法在HTML中显示如下：
 
-web.html
+`web.html
 
-`function javacalljswith(arg){
+function javacalljswith(arg){
     document.getElementById("content").innerHTML =
          ("<br\>"+arg);
 	}`
@@ -102,9 +103,10 @@ web.html
 
 
 ### 第三种：HTML中js调用Android（Java）代码
-MainActivity.Java
 
-`@JavascriptInterface
+`MainActivity.Java
+
+@JavascriptInterface
 	public void startFunction(){
     	runOnUiThread(new Runnable() {
         	@Override
@@ -114,9 +116,10 @@ Toast.makeText(MainActivity.this,"show",Toast.LENGTH_SHORT).show();
     });
 }`
 
-web.html
 
-`<body>
+`web.html
+
+<body>
 HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>
@@ -132,9 +135,10 @@ HTML 内容显示 <br/>
 
 
 ### 第四种：HTML中js调用Android（Java）代码（带参数）
-MainActivity.Java
 
-`@JavascriptInterface
+`MainActivity.Java
+
+@JavascriptInterface
 	public void startFunction(final String text){
     	runOnUiThread(new Runnable() {
        	 @Override
@@ -144,9 +148,10 @@ new AlertDialog.Builder(MainActivity.this).setMessage(text).show();
     });
 }`
 
-web.html
 
-`<body>
+`web.html
+
+<body>
 HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>

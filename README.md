@@ -1,12 +1,11 @@
-
 ## 关于通过WebView实现Android（Java）与JavaScript（HTML）交互
 
-## WebView简介
+### WebView简介
 1. WebView是一个基于webkit引擎、展现web页面的控件，作用是显示和渲染Web页面，直接使用html文件（网络上或本地assets中）作布局，可和JavaScript交互调用。
 2. 一般来说WebView可单独使用，可联合其子类一起使用，WebView的最常用的子类为WebSettings类、WebViewClient类、WebChromeClient类。
 
-## WebView配置
-### WebSettings类（作用：对WebView进行配置和管理）
+### WebView配置
+#### WebSettings类（作用：对WebView进行配置和管理）
 1.  配置步骤1：添加访问网络权限(AndroidManifest.xml)
 
 `<uses-permission android:name="android.permission.INTERNET" />`
@@ -47,7 +46,7 @@
 
 `mWebView.loadUrl("content://com.android.htmlfileprovider/sdcard/test.html");`
 
-## Android（Java）与JavaScript（HTML）交互
+### Android（Java）与JavaScript（HTML）交互
   有以下四种情况：
 1. Android（Java）调用HTML中js代码
 2. Android（Java）调用HTML中js代码（带参数）
@@ -63,18 +62,16 @@
 
 
 
-### 第一种：Android（Java）调用HTML中js代码
+#### 第一种：Android（Java）调用HTML中js代码
+`MainActivity.Java`
 
-`MainActivity.Java
-
-mWebView.loadUrl("javascript:javacalljs()");`
-
+`mWebView.loadUrl("javascript:javacalljs()");`
 
 javacalljs()方法在HTML中显示如下：
 
-`web.html
+`web.html`
 
-function javacalljs(){
+`function javacalljs(){
     document.getElementById("content").innerHTML =
          "<br\>JAVA调用了JS的无参函数";
 	}`
@@ -82,18 +79,16 @@ function javacalljs(){
 
 
 
-### 第二种：Android（Java）调用HTML中js代码（带参数）
+#### 第二种：Android（Java）调用HTML中js代码（带参数）
+`MainActivity.Java`
 
-`MainActivity.Java
-
-mWebView.loadUrl("javascript:javacalljswith("+"'http://www.baidu.com/'" + ")");`
-
+`mWebView.loadUrl("javascript:javacalljswith("+"'http://www.baidu.com/'" + ")");`
 
 javacalljswith()方法在HTML中显示如下：
 
-`web.html
+`web.html`
 
-function javacalljswith(arg){
+`function javacalljswith(arg){
     document.getElementById("content").innerHTML =
          ("<br\>"+arg);
 	}`
@@ -102,11 +97,10 @@ function javacalljswith(arg){
 
 
 
-### 第三种：HTML中js调用Android（Java）代码
+#### 第三种：HTML中js调用Android（Java）代码
+`MainActivity.Java`
 
-`MainActivity.Java
-
-@JavascriptInterface
+`@JavascriptInterface
 	public void startFunction(){
     	runOnUiThread(new Runnable() {
         	@Override
@@ -116,10 +110,9 @@ Toast.makeText(MainActivity.this,"show",Toast.LENGTH_SHORT).show();
     });
 }`
 
+`web.html`
 
-`web.html
-
-<body>
+`<body>
 HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>
@@ -134,11 +127,10 @@ HTML 内容显示 <br/>
 
 
 
-### 第四种：HTML中js调用Android（Java）代码（带参数）
+#### 第四种：HTML中js调用Android（Java）代码（带参数）
+`MainActivity.Java`
 
-`MainActivity.Java
-
-@JavascriptInterface
+`@JavascriptInterface
 	public void startFunction(final String text){
     	runOnUiThread(new Runnable() {
        	 @Override
@@ -148,10 +140,9 @@ new AlertDialog.Builder(MainActivity.this).setMessage(text).show();
     });
 }`
 
+`web.html`
 
-`web.html
-
-<body>
+`<body>
 HTML 内容显示 <br/>
 <h1><div id="content">内容显示</div></h1>
 <br/>
